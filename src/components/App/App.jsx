@@ -16,7 +16,7 @@ function App() {
   const [state, setState] = useState(() => {
     // check if the state is in local storage
     const savedFeedback = localStorage.getItem("feedback");
-    if (savedFeedback !== 0) {
+    if (!savedFeedback) {
       return JSON.parse(savedFeedback);
     }
     //if nothing in local storage, then initiate as 0s
