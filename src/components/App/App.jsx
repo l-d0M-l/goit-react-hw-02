@@ -16,7 +16,7 @@ function App() {
   const [state, setState] = useState(() => {
     // check if the state is in local storage
     const savedFeedback = localStorage.getItem("feedback");
-    if (!savedFeedback) {
+    if (savedFeedback != 0) {
       return JSON.parse(savedFeedback);
     }
     //if nothing in local storage, then initiate as 0s
@@ -47,12 +47,24 @@ function App() {
     }));
   };
 
+  const resetCount = () => {
+    setState({
+      good: 0,
+      neutral: 0,
+      bad: 0,
+    });
+  };
+
   const totalFeedback = state.bad + state.good + state.neutral;
 
   return (
     <>
       <Description />
-      <Options update={updateFeedback} feedbackCount={totalFeedback} />
+      <Options
+        update={updateFeedback}
+        feedbackCount={totalFeedback}
+        resetFunc={resetCount}
+      />
       {totalFeedback ? (
         <Feedback data={state} feedbackCount={totalFeedback} />
       ) : (

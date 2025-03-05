@@ -1,6 +1,6 @@
 import css from "./Options.module.css";
 
-function Options({ update, feedbackCount }) {
+function Options({ update, feedbackCount, resetFunc }) {
   return (
     <>
       <ul className={css.list}>
@@ -35,7 +35,7 @@ function Options({ update, feedbackCount }) {
           <li>
             <button
               onClick={() => {
-                update(0);
+                resetFunc();
               }}
             >
               Reset
