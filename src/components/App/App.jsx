@@ -16,7 +16,7 @@ function App() {
   const [state, setState] = useState(() => {
     // check if the state is in local storage
     const savedFeedback = localStorage.getItem("feedback");
-    if (savedFeedback != 0) {
+    if (savedFeedback) {
       return JSON.parse(savedFeedback);
     }
     //if nothing in local storage, then initiate as 0s
@@ -32,15 +32,6 @@ function App() {
   }, [state]);
 
   const updateFeedback = (feedbackType) => {
-    if (feedbackType === 0) {
-      setState({
-        good: 0,
-        neutral: 0,
-        bad: 0,
-      });
-      return;
-    }
-
     setState((prevState) => ({
       ...prevState,
       [feedbackType]: prevState[feedbackType] + 1,
